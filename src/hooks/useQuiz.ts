@@ -1,8 +1,9 @@
 
 import { set } from "react-hook-form";
 import { useCreateWindowStore } from "../_store/CreateWindowStateStore";
-import { ICreateQuiz, useCreateQuizMutation, useGetOneQuizQuery } from "../api/useQuiz/useQuiz";
+import { getQuiz, ICreateQuiz, useCreateQuizMutation, useGetOneQuizQuery } from "../api/useQuiz/useQuiz";
 import { useParams, useRouter } from "next/navigation";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 export const useQuizHook = () => {
   const createQuizMutation = useCreateQuizMutation();
   const router = useRouter();
@@ -28,9 +29,12 @@ export const useQuizHook = () => {
   return { createQuiz, createQuizMutation };
 };
 
-export const useQuizGetOne = (id: string) => {
-
+export const useQuizGetOne = () => {
+  const params = useParams()
+  const id = Array.isArray(params.id) ? params.id[0] : params.id || "";
   const res = useGetOneQuizQuery(id);
-
   return res;
 }
+
+
+

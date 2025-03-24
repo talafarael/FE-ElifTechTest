@@ -15,7 +15,7 @@ import { useQuizHook } from '@/src/hooks/useQuiz';
 import { ICreateQuiz, useCreateQuizMutation } from '@/src/api/useQuiz/useQuiz';
 import { useCreateWindowStore } from '@/src/_store/CreateWindowStateStore';
 export interface QuizFormField {
-  name: "name" | "description";
+  name: "title" | "description";
   type: string;
   placeholder: string;
   validation: {
@@ -24,7 +24,7 @@ export interface QuizFormField {
   };
 }
 export interface IQuizFormValues {
-  name: string;
+  title: string;
   description: string;
 }
 export const CreateQuizForm = () => {
@@ -42,8 +42,8 @@ export const CreateQuizForm = () => {
   };
   return (
     windowQuiz ? (
-      <div className="flex justify-center w-[100vw] items-center min-h-screen absolute">
-        <Card className="w-[450px]">
+      <div className="flex justify-center w-[100vw] items-center min-h-screen absolute ">
+        <Card className="w-[450px] ">
           <CardHeader>
             <CardTitle>Create project</CardTitle>
             <CardDescription>Deploy your new project in one-click.</CardDescription>

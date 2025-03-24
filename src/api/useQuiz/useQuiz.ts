@@ -1,7 +1,7 @@
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { InfiniteData, QueryClient, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosPost } from "../axiosPost";
 import { axiosGet } from "../axiosGet";
-
+import { QuizResponse } from "@/src/type/api/Quiz";
 export interface ICreateQuiz {
   title: string
   description: string
@@ -23,13 +23,25 @@ export const useCreateQuizMutation = () => {
 export const useGetOneQuizQuery = (id: string) => {
   return useQuery({
     queryKey: ["get_one_quiz"],
-    queryFn: async () => await axiosGet({ path: `/quiz/get_one?id=${id}` }),
+    queryFn: async () => await axiosGet({ path: `quiz/get_one?id=${id}` }),
   });
 };
 
+export const getQuiz = async ({ pageParam = 1 }) => {
+  const limit = 10;
+  const res = await axiosGet({
+    path: `quiz/get?page=${pageParam}&limit=${limit}`,
+  });
+  return res;
+};
+
 export const useGetQuizQuery = () => {
-  return useQuery({
-    queryKey: ["quiz"],
-    queryFn: async () => await axiosGet({ path: "/path" }),
+  return useInfiniteQuery<QuizResponse, Error, InfiniteData<QuizResponse, number>, any, number>({
+    queryKey: ["quizGet"],
+    queryFn: getQuiz,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: any, allPages: any) => {
+      return lastPage.length === 10 ? allPages.length + 1 : undefined;
+    },
   });
 };
