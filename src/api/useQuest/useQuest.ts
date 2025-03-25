@@ -32,3 +32,20 @@ export const useChangeQuestMutation = () => {
     },
   });
 };
+
+
+export const useRemoveQuestMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: IChangeQuest) => {
+      return await axiosPost<IChangeQuest>({ path: "quest/remove_quest", body: data });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get_one_quiz"] });
+    },
+    onError: (error) => {
+      console.error("Error creating quiz:", error);
+    },
+  });
+};
+

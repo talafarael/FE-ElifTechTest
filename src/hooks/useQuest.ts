@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation"
-import { useChangeQuestMutation, useCreateQuestMutation } from "../api/useQuest/useQuest"
+import { useChangeQuestMutation, useCreateQuestMutation, useRemoveQuestMutation } from "../api/useQuest/useQuest"
 import { IQuestDefValue, IQuestFormValues } from "../components/CreateQuestionForm"
-import { IChangeQuest, ICreateQuest } from "../type/api/Quest"
+import { IChangeQuest, ICreateQuest, IRemoveQuest } from "../type/api/Quest"
 
 
 
@@ -51,3 +51,21 @@ export const useChangeeQuest = () => {
   }
   return { changeQuest };
 }
+
+
+
+export const useRemoveQuest = () => {
+  const removeQuestMutation = useRemoveQuestMutation()
+
+
+  const removeQuest = async (id: string) => {
+    const body: IRemoveQuest = {
+      id: id
+    }
+    const result = await removeQuestMutation.mutateAsync(body)
+    return result
+
+  }
+  return { removeQuest };
+}
+

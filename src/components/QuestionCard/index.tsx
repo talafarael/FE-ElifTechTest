@@ -4,12 +4,16 @@ import { IQuest } from '@/src/type/api/Quiz'
 import React, { useState } from 'react'
 import { CreateQuestionForm, IQuestDefValue } from '../CreateQuestionForm'
 import { QuestionCategory } from '../CreateQuestionForm/createQuestForm.data'
+import { ConfirmModal } from '../ConfirmRemove'
+import { useRemoveQuest } from '@/src/hooks/useQuest'
+import { DialogTrigger } from '@/components/ui/dialog'
 
 export interface QuestionCardProps {
   question: IQuest
 }
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
   const [stateChange, setStateChange] = useState<boolean>(false)
+  const { removeQuest } = useRemoveQuest()
   const handlerChagneCard = () => setStateChange(!stateChange)
   if (stateChange) {
     const create: IQuestDefValue = {
@@ -23,7 +27,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
     return (<CreateQuestionForm typeAction="change" data={create} handler={handlerChagneCard} id={question.id} />
     )
   }
-
+  const handlerRemoveQuest = () => {
+    removeQuest(question.id)
+  }
   return (
     <Card className="w-[80%] text-[20px] flex items-start justify-around p-[30px]  flex-col h-[300px] bg-secondary mt-[20px]">
       < CardTitle className='text-[45px]' > {question.question}</CardTitle >
@@ -35,12 +41,17 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
         ))}
       </CardContent>
       <CardFooter className='flex items-end m-0 p-0 justify-end w-[100%] h-[100%]'>
-        <Button onClick={handlerChagneCard} >
+        <Button onClick={handlerChagneCard} className='w-[150px]' >
           Change
         </Button>
-        <Button >
-          Remove
-        </Button>
+        <DialogTrigger asChild className='w-[150px] ml-[20px]'>
+          <Button >removeQuest</Button>
+        </DialogTrigger>
+
+        <ConfirmModal handler={handlerRemoveQuest} />
+
+
+
 
       </CardFooter>
 

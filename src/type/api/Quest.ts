@@ -10,4 +10,6 @@ export interface IChangeQuest {
   type: string
   answer?: string[] | undefined;
 }
-
+export interface IRemoveQuest {
+  id: string
+}

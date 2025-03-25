@@ -1,3 +1,4 @@
+import { Dialog } from '@/components/ui/dialog';
 import { BreadcrumbComponent } from '@/src/components/Breadcrumb';
 import React from 'react'
 
@@ -9,8 +10,10 @@ export default function RootLayout({
 
   return (
     <div className='w-[98vw] flex justify-center items-center flex-col'>
-      <BreadcrumbComponent />
-      {children}
+      <Dialog>
+        <BreadcrumbComponent />
+        {children}
+      </Dialog>
     </div>
   )
 }
