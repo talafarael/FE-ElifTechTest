@@ -6,7 +6,7 @@ export interface QuizResponse {
   totalPages: number;
 }
 
-export interface Quiz {
+export interface IQuiz {
   id: string
   title: string
   description: string
@@ -20,4 +20,13 @@ export interface IQuest {
   question: string
   type: string,
   answer: string[]
+}
+
+
+export interface ICreateQuiz {
+  title: string
+  description: string
+}
+export interface IChangeQuiz extends ICreateQuiz {
+  id: string
 }

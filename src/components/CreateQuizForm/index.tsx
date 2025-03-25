@@ -12,8 +12,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { CreateQuizFormData } from './createQuizForm.data';
 import { useQuizHook } from '@/src/hooks/useQuiz';
-import { ICreateQuiz, useCreateQuizMutation } from '@/src/api/useQuiz/useQuiz';
+import { useCreateQuizMutation } from '@/src/api/useQuiz/useQuiz';
 import { useCreateWindowStore } from '@/src/_store/CreateWindowStateStore';
+import { ICreateQuiz } from '@/src/type/api/Quiz';
 export interface QuizFormField {
   name: "title" | "description";
   type: string;

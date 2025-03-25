@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation"
-import { useCreateQuestMutation } from "../api/useQuest/useQuest"
-import { IQuestFormValues } from "../components/CreateQuestionForm"
-import { ICreateQuest } from "../type/api/Quest"
+import { useChangeQuestMutation, useCreateQuestMutation } from "../api/useQuest/useQuest"
+import { IQuestDefValue, IQuestFormValues } from "../components/CreateQuestionForm"
+import { IChangeQuest, ICreateQuest } from "../type/api/Quest"
 
 
 
@@ -10,11 +10,13 @@ export const useCreateQuest = () => {
   const params = useParams()
 
 
-  const createQuest = async (data: IQuestFormValues) => {
+  const createQuest = async (data: IQuestDefValue) => {
     const id = Array.isArray(params.id) ? params.id[0] : params.id || "";
+    const optionsArray = [data.options0, data.options1, data.options2, data.options3].filter(Boolean);
+    const transformanswer = optionsArray.length ? optionsArray : undefined;
     const body: ICreateQuest = {
       title: data.title,
-      answer: data.answer ? data.answer : undefined,
+      answer: transformanswer as string[] | undefined,
       type: data.type,
       idQuiz: id
     }
@@ -24,4 +26,28 @@ export const useCreateQuest = () => {
 
   }
   return { createQuest };
+}
+
+export const useChangeeQuest = () => {
+  const changeQuestMutation = useChangeQuestMutation()
+
+
+  const changeQuest = async (data: IQuestDefValue, idQuest: string, handler: () => void) => {
+    const optionsArray = [data.options0, data.options1, data.options2, data.options3].filter(Boolean);
+    const transformanswer = optionsArray.length ? optionsArray : undefined;
+    const body: IChangeQuest = {
+      question: data.title,
+      answer: transformanswer as string[] | undefined,
+      type: data.type,
+      idQuest: idQuest
+    }
+    const res = await changeQuestMutation.mutateAsync(body)
+    if (res) {
+
+      handler()
+    }
+    return res
+
+  }
+  return { changeQuest };
 }

@@ -60,16 +60,15 @@ export const useCreateQuestForm = () => {
     },
   ];
 
-  const createQuestAnswerData: OptionFieldConfig[] | undefined =
-    type != "Text"
-      ? Array.from({ length: count }, (_, index) => ({
-        name: `options${index}`,
-        type: "text",
-        placeholder: `Варіант${index + 1}`,
-        validation: {
-          required: "Це поле обов'язкове",
-        },
-      }))
-      : undefined;
-  return { count, setCount, createQuestFormData, createQuestAnswerData, setType };
+  const createQuestAnswerData: OptionFieldConfig[] | undefined = type != "Text"
+    ? Array.from({ length: count }, (_, index) => ({
+      name: `options${index}`,
+      type: "text",
+      placeholder: `Варіант${index + 1}`,
+      validation: {
+        required: "Це поле обов'язкове",
+      },
+    }))
+    : undefined;
+  return { count, setCount, createQuestFormData, createQuestAnswerData, setType, type };
 };

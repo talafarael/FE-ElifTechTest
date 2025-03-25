@@ -1,11 +1,11 @@
 import { InfiniteData, QueryClient, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosPost } from "../axiosPost";
 import { axiosGet } from "../axiosGet";
-import { QuizResponse } from "@/src/type/api/Quiz";
-export interface ICreateQuiz {
-  title: string
-  description: string
-}
+import { IChangeQuiz, ICreateQuiz, QuizResponse } from "@/src/type/api/Quiz";
+
+
+
+
 export const useCreateQuizMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -42,6 +42,20 @@ export const useGetQuizQuery = () => {
     initialPageParam: 1,
     getNextPageParam: (lastPage: any, allPages: any) => {
       return lastPage.length === 10 ? allPages.length + 1 : undefined;
+    },
+  });
+};
+export const useChangeQuiztMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: IChangeQuiz) => {
+      return await axiosPost<IChangeQuiz>({ path: "quiz/change_quiz", body: data });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get_one_quiz"] });
+    },
+    onError: (error) => {
+      console.error("Error creating quiz:", error);
     },
   });
 };
