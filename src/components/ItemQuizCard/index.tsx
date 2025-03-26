@@ -30,6 +30,9 @@ export const ItemQuizCard: React.FC<ItemQuizCardProps> = ({ data }) => {
         <Button onClick={() => router.push(`/inQuiz/${data.id}`)}>
           Start
         </Button>
+        <Button onClick={() => router.push(`/watchResult/${data.id}`)}>
+          Result
+        </Button>
         <Button onClick={() => router.push(`/changeQuiz/${data.id}`)} >
           Change Quiz
         </Button>
