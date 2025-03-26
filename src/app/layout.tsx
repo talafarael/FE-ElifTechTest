@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "../utils/ReactQueryProvider";
 import { Header } from "../components/Header";
 import { CreateQuizForm } from "../components/CreateQuizForm";
+import { BreadcrumbComponent } from "../components/Breadcrumb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex items-center flex-col`}
       >
         <ReactQueryProvider>
+
           <Header />
+          <BreadcrumbComponent />
+
           {children}
           <CreateQuizForm />
         </ReactQueryProvider>

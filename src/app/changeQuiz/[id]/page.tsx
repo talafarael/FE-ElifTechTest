@@ -10,6 +10,7 @@ import { useQuizGetOne } from "@/src/hooks/useQuiz";
 import { IQuest } from "@/src/type/api/Quiz";
 import { useState } from "react";
 import NotFound from "../../not-found";
+import { SkeletonLoader } from "@/src/components/SkeletonLoader";
 
 export default function Page() {
   const create: IQuestDefValue = {
@@ -23,16 +24,9 @@ export default function Page() {
     setStateQuizCreater(!stateQuizCreater)
   }
   const { data, error, isLoading } = useQuizGetOne()
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Skeleton className="w-[100px] h-[20px] rounded-full" />
-      </div>
-    );
-  }
-  if (error) {
-    return <NotFound />
-  }
+  if (isLoading) <SkeletonLoader />
+  if (error) <NotFound />
+
 
   return (
     <Card className="flex justify-center flex-col items-center mb-[50px] w-[70vw] shadow-lg border mt-[50px] border-muted ">

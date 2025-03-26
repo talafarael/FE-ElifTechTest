@@ -27,7 +27,7 @@ export const ItemQuizCard: React.FC<ItemQuizCardProps> = ({ data }) => {
 
       </CardHeader>
       <CardFooter className='flex justify-between w-[100%] items-end'>
-        <Button>
+        <Button onClick={() => router.push(`/inQuiz/${data.id}`)}>
           Start
         </Button>
         <Button onClick={() => router.push(`/changeQuiz/${data.id}`)} >

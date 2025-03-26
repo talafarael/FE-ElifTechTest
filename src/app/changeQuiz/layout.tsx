@@ -11,7 +11,6 @@ export default function RootLayout({
   return (
     <div className='w-[98vw] flex justify-center items-center flex-col'>
       <Dialog>
-        <BreadcrumbComponent />
         {children}
       </Dialog>
     </div>

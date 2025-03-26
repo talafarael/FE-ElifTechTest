@@ -27,24 +27,25 @@ export const useGetOneQuizQuery = (id: string) => {
   });
 };
 
-export const getQuiz = async ({ pageParam = 1 }) => {
+export const getQuiz = async ({ pageParam = 1, sortBy = "title", excludeEmpty = true }) => {
   const limit = 10;
   const res = await axiosGet({
-    path: `quiz/get?page=${pageParam}&limit=${limit}`,
+    path: `quiz/get?page=${pageParam}&limit=${limit}&sortBy=${sortBy}&excludeEmpty=${excludeEmpty}`,
   });
   return res;
 };
 
-export const useGetQuizQuery = () => {
-  return useInfiniteQuery<QuizResponse, Error, InfiniteData<QuizResponse, number>, any, number>({
-    queryKey: ["quizGet"],
-    queryFn: getQuiz,
+export const useGetQuizQuery = (sortBy: string, excludeEmpty: boolean) => {
+  return useInfiniteQuery({
+    queryKey: ["quizGet", sortBy],
+    queryFn: ({ pageParam }) => getQuiz({ pageParam, sortBy, excludeEmpty }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage: any, allPages: any) => {
-      return lastPage.length === 10 ? allPages.length + 1 : undefined;
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.data.length === 10 ? allPages.length + 1 : undefined;
     },
   });
 };
+
 export const useChangeQuiztMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
