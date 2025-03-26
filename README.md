@@ -1,5 +1,7 @@
 Questionnaire Builder App
 
+Second lvl
+
 Overview
 
 Web-based application for building and completing questionnaires.
@@ -10,7 +12,7 @@ This project includes all requirements from the Base Level and Middle Level, exc
 
 Implemented Features:
 
-Questionnaire catalog page
+Questionnaire Catalog Page
 
 Displays a paginated list of available questionnaires.
 
@@ -34,7 +36,7 @@ Number of questions
 
 Number of completions
 
-Questionnaire builder page
+Questionnaire Builder Page
 
 Users can create a questionnaire by adding multiple questions.
 
@@ -50,7 +52,7 @@ Ability to re-order questions (drag-and-drop not yet implemented).
 
 Once submitted, questionnaires are stored in the database.
 
-Interactive questionnaire page
+Interactive Questionnaire Page
 
 Users can complete created questionnaires.
 
@@ -79,10 +81,12 @@ MongoDB
 Prisma
 
 Deployment
-BE-URL:<https://be-eliftechtest.onrender.com>
-FE-repo: [https://github.com/talafarael/FE-ElifTechTest]
 
-BE-repo: [https://github.com/talafarael/BE-ElifTechTest.git]
+Backend URL: <https://be-eliftechtest.onrender.com>
+
+Frontend Repository: <https://github.com/talafarael/FE-ElifTechTest>
+
+Backend Repository: <https://github.com/talafarael/BE-ElifTechTest.git>
 
 Future Improvements
 
@@ -90,4 +94,4 @@ Implement drag-and-drop functionality for reordering questions and answers.
 
 Add infinite scroll pagination for the questionnaire catalog.
 
-Add a questionnaire statistics page with completion time metrics and visual charts.s.org/docs/app/building-your-application/deploying) for more details.
+Add a questionnaire statistics page with completion time metrics and visual charts.
