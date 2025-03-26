@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Questionnaire Builder App
 
-## Getting Started
+Overview
 
-First, run the development server:
+Web-based application for building and completing questionnaires.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Features Implemented
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project includes all requirements from the Base Level and Middle Level, except for drag-and-drop functionality on the questionnaire builder page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Implemented Features:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Questionnaire catalog page
 
-## Learn More
+Displays a paginated list of available questionnaires.
 
-To learn more about Next.js, take a look at the following resources:
+Each questionnaire card shows:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Name
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Description
 
-## Deploy on Vercel
+Number of questions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Number of completions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Actions: Edit / Run / Delete
+
+Sorting functionality by:
+
+Name
+
+Number of questions
+
+Number of completions
+
+Questionnaire builder page
+
+Users can create a questionnaire by adding multiple questions.
+
+Supported question types:
+
+Text (free-form input)
+
+Single choice (radio buttons)
+
+Multiple choices (checkboxes)
+
+Ability to re-order questions (drag-and-drop not yet implemented).
+
+Once submitted, questionnaires are stored in the database.
+
+Interactive questionnaire page
+
+Users can complete created questionnaires.
+
+Displays all answers and completion time after submission.
+
+Saves responses in the database.
+
+Supports intermediate completion saving (users can continue from where they left after page refresh).
+
+Technologies Used
+
+Frontend:
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Backend:
+
+NestJS
+
+MongoDB
+
+Prisma
+
+Deployment
+
+FE-repo: [https://github.com/talafarael/FE-ElifTechTest]
+
+BE-repo: [https://github.com/talafarael/BE-ElifTechTest.git]
+
+Future Improvements
+
+Implement drag-and-drop functionality for reordering questions and answers.
+
+Add infinite scroll pagination for the questionnaire catalog.
+
+Add a questionnaire statistics page with completion time metrics and visual charts.s.org/docs/app/building-your-application/deploying) for more details.
