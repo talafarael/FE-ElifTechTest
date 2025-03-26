@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   env: {
-    API_PORT: 'http://localhost:8000/',
+    API_PORT: 'https://be-eliftechtest.onrender.com/',
   },
 };
 
