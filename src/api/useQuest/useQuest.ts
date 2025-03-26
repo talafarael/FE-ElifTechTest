@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosPost } from "../axiosPost";
-import { IChangeQuest, ICreateQuest } from "@/src/type/api/Quest";
+import { IChangeQuest, ICreateQuest, IRemoveQuest } from "@/src/type/api/Quest";
 
 export const useCreateQuestMutation = () => {
   const queryClient = useQueryClient();
@@ -37,8 +37,8 @@ export const useChangeQuestMutation = () => {
 export const useRemoveQuestMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: IChangeQuest) => {
-      return await axiosPost<IChangeQuest>({ path: "quest/remove_quest", body: data });
+    mutationFn: async (data: IRemoveQuest) => {
+      return await axiosPost<IRemoveQuest>({ path: "quest/remove_quest", body: data });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["get_one_quiz"] });
