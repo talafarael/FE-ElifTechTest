@@ -1,5 +1,5 @@
 import { useParams, useRouter } from "next/navigation";
-import { useResponseCreateMutation } from "../api/useResponse/useResponse";
+import { useGetOneResponseQuery, useGetResponseQuery, useResponseCreateMutation } from "../api/useResponse/useResponse";
 import { IAnswersResponse, IResponseCreate } from "../type/api/Reponse";
 
 export const useResponseCreate = () => {
@@ -21,7 +21,7 @@ export const useResponseCreate = () => {
       const res = await createResponseMutation.mutateAsync(body);
       if (res) {
         localStorage.removeItem("formData")
-        router.push(`/watchResult/${res.id}`)
+        router.push(`/watchResult/${id}/getOneResult/${res.id}`)
       }
       return res;
     } catch (error) {
@@ -33,4 +33,16 @@ export const useResponseCreate = () => {
 }
 
 
+export const useResponseGetOne = () => {
+  const params = useParams()
+  const id = Array.isArray(params.id) ? params.id[0] : params.id || "";
+  const res = useGetOneResponseQuery(id);
+  return res;
+}
+export const useResponseGet = () => {
+  const params = useParams()
+  const id = Array.isArray(params.idQuiz) ? params.idQuiz[0] : params.idQuiz || "";
+  const res = useGetResponseQuery(id);
+  return res;
+}
 
