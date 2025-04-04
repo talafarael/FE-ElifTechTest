@@ -17,8 +17,8 @@ export const QuizCard: React.FC<QuizCardProps> = ({ data }) => {
     <CardContent className="w-[100%] flex items-center justify-between ">
       {!changeQuiz ? (
         <div>
-          <h1 className="text-[60px]">{data.title}</h1>
-          <p>{data.description}</p>
+          <h1 className="text-[60px]">{data?.title}</h1>
+          <p>{data?.description}</p>
         </div>
       ) : (
         <QuizForm handlerCloseQuizChanger={hanlderChangeQuiz} data={data} />
